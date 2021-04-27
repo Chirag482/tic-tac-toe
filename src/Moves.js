@@ -5,7 +5,7 @@ class Moves extends React.Component {
   render() {
     return (
       <div className="moveslist">
-        <h1>Moves</h1>
+        <ol>{this.props.movess}</ol>
       </div>
     );
   }

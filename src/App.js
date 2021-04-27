@@ -76,6 +76,14 @@ class App extends React.Component {
     } else {
       status = "Next Player : " + (this.state.xIsNext ? "X" : "O");
     }
+    const moves = history.map((step, move) => {
+      const desc = move ? "Go to move #" + move : "Go to game start";
+      return (
+        <li>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      );
+    });
     return (
       <div className="App">
         <h1 style={styles.heading}>Tic Tac Toe</h1>
@@ -85,7 +93,7 @@ class App extends React.Component {
             onClick={(i) => this.handleClick(i)}
             status={status}
           />
-          <Moves />
+          <Moves movess={moves} />
         </div>
       </div>
     );
