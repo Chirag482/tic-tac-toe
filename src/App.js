@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import Game from "./Game";
 import Moves from "./Moves";
@@ -68,7 +67,7 @@ class App extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const square = current.squares.slice();
+
     const winner = this.calculateWinner(current.squares);
     let status;
     if (winner) {
@@ -77,10 +76,14 @@ class App extends React.Component {
       status = "Next Player : " + (this.state.xIsNext ? "X" : "O");
     }
     const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
+      const desc = move ? "Move #" + move : "Go To Start Game";
+      const tooltiptext = "Click to travel to Move:" + move;
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button className="tooltip" onClick={() => this.jumpTo(move)}>
+            {desc}
+            <span className="tooltiptext">{tooltiptext}</span>
+          </button>
         </li>
       );
     });
